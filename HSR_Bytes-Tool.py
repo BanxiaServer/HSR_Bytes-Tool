@@ -1,10 +1,9 @@
 TEXTS = [
-    "OverSeaLive",
-    "com.HoYoverse.hkrpgoversea",
-    "Star Rail",
-    # 上面三行文字可以随便改 不会影响什么
-    "使用半夏公益服公开文件制作 请不要修改或删除这行内容",
-    "http://your_url.com:666" + "/query_dispatch"# 修改前半部分内容为服务器地址
+    "by亡灵暴龙大帝",
+    "com.HoYoverse.hkrpgoversea",#可以随意更改
+    "Star Rail",#可以随意更改
+    "使用半夏公益服公开文件制作",
+    "http://your_url.com:666" + "/query_dispatch"#修改前半部分内容为服务器地址
 ]
 
 def generate_file_with_length(texts):
@@ -23,14 +22,16 @@ def generate_file_with_length(texts):
             else:
                 file_content.extend(bytearray.fromhex("00"))
 
-        # 计算字节数量并转换为十六进制
-        byte_count = len(text)
+        # 计算UTF-8编码后的字节数量并转换为十六进制
+        byte_count = len(text.encode("utf-8"))
         byte_count_hex = hex(byte_count)[2:].zfill(2)
-        
+
+        # 添加字节数量的十六进制表示作为前导字节
+        file_content.append(int(byte_count_hex, 16))
+
         # 构造数据内容
         content = bytearray()
-        content.append(int(byte_count_hex, 16))  # 第一个字节为字节数量
-        content.extend(text.encode())
+        content.extend(text.encode("utf-8"))
 
         # 将数据内容添加到文件内容中
         file_content.extend(content)
