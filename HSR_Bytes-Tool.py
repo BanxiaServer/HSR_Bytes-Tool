@@ -1,8 +1,8 @@
 TEXTS = [
-    "by亡灵暴龙大帝",
+    "by亡灵暴龙大帝",#OverSeaLive
     "com.HoYoverse.hkrpgoversea",#可以随意更改
     "Star Rail",#可以随意更改
-    "使用半夏公益服公开文件制作",
+    "使用半夏公益服公开文件制作",#OVERSEA_BUILD
     "http://your_url.com:666" + "/query_dispatch"#修改前半部分内容为服务器地址
 ]
 
