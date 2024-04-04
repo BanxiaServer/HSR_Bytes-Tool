@@ -4,7 +4,7 @@ TEXTS = [
     "Star Rail",
     "OVERSEA_BUILD",
     # 上面四行文字可以随便改 不会影响什么
-    "http://bxgov.cn:21450" + "/query_dispatch"# 修改前半部分内容为服务器地址
+    "http://your_url.com:666" + "/query_dispatch"# 修改前半部分内容为服务器地址
 ]
 
 def generate_file_with_length(texts):
