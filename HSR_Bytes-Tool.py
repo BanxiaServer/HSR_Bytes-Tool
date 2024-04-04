@@ -2,8 +2,8 @@ TEXTS = [
     "OverSeaLive",
     "com.HoYoverse.hkrpgoversea",
     "Star Rail",
-    "OVERSEA_BUILD",
-    # 上面四行文字可以随便改 不会影响什么
+    # 上面三行文字可以随便改 不会影响什么
+    "使用半夏公益服公开文件制作 请不要修改或删除这行内容",
     "http://your_url.com:666" + "/query_dispatch"# 修改前半部分内容为服务器地址
 ]
 
