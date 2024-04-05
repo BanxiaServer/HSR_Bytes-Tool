@@ -6,14 +6,14 @@ BundleIdentifier = "只因你太美"  # com.HoYoverse.hkrpgoversea Customizable 
 ProductName = "What can I say?"  # Star Rail Customizable 可以随意更改
 ScriptDefines = "Mamba out"  # OVERSEA_BUILD Customizable 可以随意更改
 
-GlobalDispatchUrlList = "http://your_url.com:666"
+GlobalDispatchUrlList = "http://yoururl.com:666" #Destination address 目标地址
 
 TEXTS = [
     ChannelName,
     BundleIdentifier,
     ProductName,
     ScriptDefines,
-    GlobalDispatchUrlList + "/query_dispatch"
+    GlobalDispatchUrlList + "/query_dispatch"# 不要修改这里 Don't modify here
 ]
 
 def generate_ClientConfig_bytes(texts):
