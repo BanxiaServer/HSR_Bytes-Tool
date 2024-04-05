@@ -1,14 +1,22 @@
-TEXTS = [
-    "by亡灵暴龙大帝",  # OverSeaLive Customizable 可以随意更改
-    "只因你太美",  # com.HoYoverse.hkrpgoversea Customizable 可以随意更改
-    "What can I say?",  # Star Rail Customizable 可以随意更改
-    "Mamba out",  # OVERSEA_BUILD Customizable 可以随意更改
+import re
+import os
+# 定义变量
+ChannelName = "by亡灵暴龙大帝" # OverSeaLive Customizable 可以随意更改
+BundleIdentifier = "只因你太美"  # com.HoYoverse.hkrpgoversea Customizable 可以随意更改
+ProductName = "What can I say?"  # Star Rail Customizable 可以随意更改
+ScriptDefines = "Mamba out"  # OVERSEA_BUILD Customizable 可以随意更改
 
-    # Modify the first half to the server address 修改前半部分内容为服务器地址
-    "http://your_url.com:666" + "/query_dispatch"
+GlobalDispatchUrlList = "http://your_url.com:666"
+
+TEXTS = [
+    ChannelName,
+    BundleIdentifier,
+    ProductName,
+    ScriptDefines,
+    GlobalDispatchUrlList + "/query_dispatch"
 ]
 
-def generate_file_with_length(texts):
+def generate_ClientConfig_bytes(texts):
     # Prepare a byte array to store the entire file content 准备用于存储整个文件内容的字节数组
     file_content = bytearray()
 
@@ -44,11 +52,40 @@ def generate_file_with_length(texts):
     # Add 16 hexadecimal '00's at the end of the file 在文件末尾添加16个十六进制的'00'
     file_content.extend(bytearray.fromhex("00" * 16))
 
-    # Write to file 写入文件
-    with open("ClientConfig.bytes", "wb") as f:
+    # Write to fil 写入文件
+    output_dir = "output"  # 输出目录
+    output_path = os.path.join(output_dir, "ClientConfig.bytes")  # 输出文件路径
+
+    os.makedirs(output_dir, exist_ok=True)  # 确保输出目录存在
+    with open(output_path, "wb") as f:
         f.write(file_content)
 
-    print("文件生成成功。success")
+    print("\nClientConfig.bytes_success")
+
+
+def modify_json():
+    url_regex = re.compile(r'(https?://)([\w.-]+)(:[0-9]+)?')
+
+    try:
+        with open('input/server_env_config.json', 'r') as file:  # 输入文件路径
+            file_content = file.read()
+    except FileNotFoundError:
+        print("File 'input/server_env_config.json' not found.")
+        return
+
+    updated_content_str = url_regex.sub(GlobalDispatchUrlList, file_content)
+
+    output_dir = "output"  # 输出目录
+    output_path = os.path.join(output_dir, "server_env_config.json")  # 输出文件路径
+
+    os.makedirs(output_dir, exist_ok=True)  # 确保输出目录存在
+    try:
+        with open(output_path, 'w') as file:
+            file.write(updated_content_str)
+            print("server_env_config.json_success")
+    except Exception as e:
+        print(f"An error occurred while writing to the file: {e}")
 
 if __name__ == "__main__":
-    generate_file_with_length(TEXTS)
+    generate_ClientConfig_bytes(TEXTS)
+    modify_json()
