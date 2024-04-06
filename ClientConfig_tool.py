@@ -27,7 +27,7 @@ def generate_ClientConfig_bytes(texts):
     for index, text in enumerate(texts):
         if index > 0:
             if index == 4:
-                # 对于第四个字符串，添加特定的字节表示两个IP地址
+                # 对于第四个字符串，添加特定的字节表示一个IP地址
                 file_content.extend(bytearray.fromhex("0000000100"))
             else:
                 # 对于其他字符串，添加普通的00间隔
