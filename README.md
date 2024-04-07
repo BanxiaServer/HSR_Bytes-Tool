@@ -9,7 +9,7 @@
 
 最后 把这两个文件放在apk/assets路径内 替换已有文件即可<br>
 
-BinaryVersion_tool.py可以用于修改客户端左下角显示的版本号 修改它没有什么实际意义
+BinaryVersion_tool.py可以用于修改客户端左下角显示的版本号 修改它除了看起来更酷没有什么实际意义
 
 ---
 
